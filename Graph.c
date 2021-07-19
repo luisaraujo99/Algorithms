@@ -27,6 +27,46 @@ void llGraphPrettyPrinter(Graph g){
     }
 }
 
+// Count the number of edges in a ll graph
+// O(V+E)
+int countEdgesLL(Graph g){
+    int res = 0;
+    EList tmp;
+    for(int i=0,tmp=g[i]; i < NV;i++){
+        while (tmp) {
+            res++;
+            tmp=tmp->next;
+        }
+    }
+    return res;
+}
+
+// Count the number of edges in a graph
+// O(V^2)
+int countEdgesMat(GraphMat g){
+    int res = 0;
+    for(int i=0;i<NV;i++){
+        for(int j=0;j<NV;j++){
+            if(g[i][j]!=NE)res++;
+        }
+    }
+    return res;
+}
+
+void matGraphPrettyPrint(GraphMat g){
+    for(int i=0; i<NV ; i++){
+        printf("Node: %d\n",i);
+        for (int j = 0; j < NV; j++){
+            if(g[i][j]!=NE){
+                printf("  --|%d|--> %d\n",g[i][j],j);
+            }
+        }
+        printf("\n");
+    }
+}
+
+    
+    
 //Convert Matrix Graph to adjency list graph
 void matToList(GraphMat go, Graph gd){
     int i,j;
@@ -46,10 +86,25 @@ void matToList(GraphMat go, Graph gd){
     }
 }
 
+void listToMat(GraphMat go, Graph gd){
+    for(int i = 0; i < NV; i++){
+        for(int j = 0; j < NV; j++){
+            go[i][j] = NE;
+        }
+        EList tmp = gd[i];
+        while(tmp){
+            go[i][tmp->dest] = tmp->cost;
+            tmp=tmp->next;
+        }
+    }
+}
+
+
 int main(int argc, char const *argv[])
 {
     Graph llGraph;
     matToList(g1,llGraph);
-    llGraphPrettyPrinter(llGraph);
+    listToMat(g1,llGraph);
+    matGraphPrettyPrint(g1);
     return 0;
 }
