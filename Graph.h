@@ -1,5 +1,5 @@
-#ifndef HEADER_FILE
-#define HEADER_FILE
+#ifndef GRAPH
+#define GRAPH
 
 #define NV 6
 #define NE 0  // Non existing edge weight
@@ -28,6 +28,8 @@ typedef struct {
     int vertices [NV + 1];
     Edge edges [NEd] ;
 } GraphVect ;
+
+
 
 //printers
 void llGraphPrettyPrinter(Graph);
