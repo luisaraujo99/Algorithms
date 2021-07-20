@@ -1,6 +1,6 @@
-#include "Graph.h"
-#include "GraphSearch.h"
-#include "GraphExercises.h"
+#include "./Headers/Graph.h"
+#include "./Headers/GraphSearch.h"
+#include "./Headers/GraphExercises.h"
 #include <stdio.h>
 #include <stdlib.h>
 

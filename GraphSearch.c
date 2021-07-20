@@ -1,5 +1,5 @@
-#include "Graph.h"
-#include "GraphSearch.h"
+#include "./Headers/Graph.h"
+#include "./Headers/GraphSearch.h"
 #include <stdio.h>
 #include <stdlib.h>
 
