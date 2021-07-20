@@ -1,4 +1,7 @@
 #include "Graph.h"
+#include "GraphSearch.h"
+#include "GraphExercises.h"
+#include <stdio.h>
 
 //Graph examples
 
@@ -20,11 +23,25 @@ GraphMat g3
     { 4 , NE, 1 , 3 , 2  , NE} ,
 } ;
 
+GraphMat g4
+= { { NE, 1 , NE, NE, NE, NE } ,
+    { NE, NE, 1 , NE, NE, NE } ,
+    { NE, NE, NE, 1 , NE, NE } ,
+    { NE, NE, NE, NE, 1 , NE } ,
+    { NE, NE, NE, NE, NE, 1  } ,
+    { NE, NE, NE, NE, NE, NE } ,
+} ;
+
+//valid topological sorting to Graph g4
+int sequece1[6] = {0,1,2,3,4,5};
+
+//invalid topological sorting to Graph g4
+int sequece2[6] = {5,1,2,3,4,0};
+
 int main(int argc, char const *argv[])
 {
-    Graph llGraph;
-    matToList(g1,llGraph);
-    listToMat(g1,llGraph);
-    matGraphPrettyPrint(g1);
+    // matToList(g1,llGraph);
+    // listToMat(g1,llGraph);
+    // matGraphPrettyPrint(g1);
     return 0;
 }
