@@ -5,6 +5,8 @@
 #define NE 0  // Non existing edge weight
 #define NEd 10
 
+//Data Structures
+
 typedef int GraphMat [NV][NV];
 
 typedef struct edge {
@@ -27,5 +29,18 @@ typedef struct {
     Edge edges [NEd] ;
 } GraphVect ;
 
+//printers
+void llGraphPrettyPrinter(Graph);
+void matGraphPrettyPrint(GraphMat);
+
+//edge counters
+int countEdgesLL(Graph);
+int countEdgesMat(GraphMat);
+
+//converters
+void matToList(GraphMat, Graph);
+void listToMat(GraphMat , Graph );
+void listToVect(Graph , GraphVect *);
+void vectToList(GraphVect *, Graph );
 
 #endif
