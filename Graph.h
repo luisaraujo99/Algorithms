@@ -3,6 +3,7 @@
 
 #define NV 6
 #define NE 0  // Non existing edge weight
+#define NEd 10
 
 typedef int GraphMat [NV][NV];
 
@@ -13,5 +14,18 @@ typedef struct edge {
 } *EList ;
 
 typedef EList Graph [NV] ;
+
+
+typedef struct edgeV {
+    int dest ; // node itself (edge destination)
+    int cost ; // edge weight
+} Edge ;
+
+
+typedef struct {
+    int vertices [NV + 1];
+    Edge edges [NEd] ;
+} GraphVect ;
+
 
 #endif
