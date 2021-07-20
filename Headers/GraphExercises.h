@@ -9,5 +9,6 @@ int maxCap(Graph );
 int vCoverage(Graph , int []);
 int colorOK(Graph , int []);
 int testTop(Graph , int []);
+int biPartite(Graph);
 
 #endif

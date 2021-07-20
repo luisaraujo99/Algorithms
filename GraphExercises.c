@@ -110,3 +110,29 @@ int testTop(Graph g, int v[]){
     return 1;
 }
 
+/**
+ *  ----- SEARCH  AND TRANVERSALS 
+**/
+
+// An undirected graph is bipartite iff it is possible to
+// break the Nodes' set into two disjunt subsets such as every edge in the
+//graph has one extremity in each subset
+
+int biPartite(Graph g){
+    // bipartite[i] = 1 (resp. -1) if is in Subset 1 (resp. -1) 
+    int bip[NV];
+    for(int i=0;i<NV;i++){
+        bip[i]=0;
+    }
+    for(int i = 0;i<NV;i++){
+        EList it=g[i];
+        if(bip[i]==0 && it) bip[i] = 1;
+        for(; it ; it = it->next){
+            //the adjacents must be in the opposite set of 'o'
+            if(bip[it->dest]==bip[i]) return -1;
+            //add adjacents to the opposite set of 'o' if they are not in any
+            else if(bip[it->dest]==0) bip[it->dest] = -(bip[i]);
+        }
+    }
+    return 1;
+}

@@ -28,8 +28,8 @@ GraphMat g4
     { NE, NE, 1 , NE, NE, NE } ,
     { NE, NE, NE, 1 , NE, NE } ,
     { NE, NE, NE, NE, 1 , NE } ,
-    { NE, NE, NE, NE, NE, 1  } ,
-    { NE, NE, NE, NE, NE, NE } ,
+    { 1 , NE, NE, NE, NE, 1  } ,
+    { 1 , NE, NE, NE, NE, NE } ,
 } ;
 
 //valid topological sorting to Graph g4
@@ -39,9 +39,11 @@ int sequece1[6] = {0,1,2,3,4,5};
 int sequece2[6] = {5,1,2,3,4,0};
 
 int main(int argc, char const *argv[])
-{
-    // matToList(g1,llGraph);
-    // listToMat(g1,llGraph);
+{   
+    Graph llGraph;
+    matToList(g4,llGraph);
+    //listToMat(g1,llGraph);
     // matGraphPrettyPrint(g1);
+    printf("%d\n",biPartite(llGraph));
     return 0;
 }
