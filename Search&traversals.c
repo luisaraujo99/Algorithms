@@ -1,6 +1,9 @@
 #include "./Headers/Graph.h"
 #include "./Headers/GraphSearch.h"
 #include "./Headers/GraphExercises.h"
+#include "./Headers/Search&traversals.h"
+#include <stdio.h>
+
 
 // find if exists a path between two nodes in a graph
 
@@ -18,7 +21,7 @@ int existPathAcyclic(Graph g, int o , int d){
 }
 
 //Works with cyclic graphs
-int existPathAcyclic(Graph g, int o , int d){
+int existPathCyclic(Graph g, int o , int d){
     int visited[NV];
     for(int i = 0;i<NV;i++){
         visited[i]=0;
@@ -90,6 +93,7 @@ int traversalDF2(Graph g, int o,int p[]){
     p[o]=-1;
     return DFRec2(g,o,p);
 }
+
 int DFRec2(Graph g , int o ,int p[]){
     int count = 1;
     EList it;
@@ -102,3 +106,82 @@ int DFRec2(Graph g , int o ,int p[]){
     return count;
 }
 
+//breadth-first
+
+int traversalBF(Graph g,int o){
+    int visited[NV];
+    int queue[NV];int qinit,qend;
+    int count = 0;
+    EList it;
+
+    qinit=qend=0;
+    queue[qend++]=o; //add the origin to the queue
+    visited[o]=1;
+    while(qinit<qend){
+        o = queue[qinit++];
+        count++;
+        for(it=g[o];it;it=it->next){
+            if(!visited[it->dest]){
+                queue[qend++]=it->dest;
+            }
+        }
+    }
+    return count;
+}
+
+int traversalBFTree(Graph g,int o,int ant[]){
+    int queue[NV];int qinit,qend;
+    int count = 0;
+    EList it;
+    
+    qinit=qend=0;
+    queue[qend++]=o; //add the origin to the queue
+    ant[o]=-1;
+    while(qinit<qend){
+        o = queue[qinit++];
+        count++;
+        for(it=g[o];it;it=it->next){
+            if(ant[it->dest]==-2){
+                ant[it->dest]=o;
+                queue[qend++]=it->dest;
+            }
+        }
+    }
+    return count;
+}
+
+void traversalBFTreeComplete(Graph g,int ant[]){
+    int i;
+    for(i = 0;i<NV;i++){
+        ant[i]=-2;
+    };
+    for(i = 0;i<NV;i++){
+        if(ant[i]==-2){
+            traversalBFTree(g,i,ant);
+        };
+    };
+}
+
+
+
+int componentes(Graph g, int components[]){
+    int ant[NV];
+    traversalBFTreeComplete(g,ant);
+    int color =  0;
+    for(int i = 0;i<NV;i++){
+        if(ant[i]==-1){
+            components[i] = ++color;
+            auxColor(color,i,ant,components);
+        }
+    }
+    return color; 
+}
+
+void auxColor(int color,int origin,int ant[],int components[]){
+    for(int i = 0;i<NV;i++){
+        if(ant[i]==origin){
+            components[i]=color;
+            auxColor(color,i,ant,components);
+        }
+    }
+}

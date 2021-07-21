@@ -1,6 +1,7 @@
 #include "./Headers/Graph.h"
 #include "./Headers/GraphSearch.h"
 #include "./Headers/GraphExercises.h"
+#include "./Headers/Search&traversals.h"
 #include <stdio.h>
 
 //Graph examples
@@ -32,6 +33,26 @@ GraphMat g4
     { 1 , NE, NE, NE, NE, NE } ,
 } ;
 
+GraphMat g6
+= { { NE, 1 , NE, NE, NE, 1  } ,
+    { 1 , NE, NE, NE, NE, NE } ,
+    { NE, NE, NE, NE, 1 , NE } ,
+    { NE, NE, NE, NE, NE, 1  } ,
+    { NE, NE, 1 , NE, NE, NE } ,
+    { 1 , NE, NE, 1 , NE, NE } ,
+} ;
+
+GraphMat g8
+= { { NE, 1 , NE, NE, NE, NE } ,
+    { 1 , NE, NE, NE, NE, NE } ,
+    { NE, NE, NE, 1 , NE, NE } ,
+    { NE, NE, 1 , NE, NE, NE  } ,
+    { NE, NE, NE, NE, NE, 1  } ,
+    { NE, NE, NE, NE, 1 , NE } ,
+} ;
+
+
+
 //valid topological sorting to Graph g4
 int sequece1[6] = {0,1,2,3,4,5};
 
@@ -41,9 +62,13 @@ int sequece2[6] = {5,1,2,3,4,0};
 int main(int argc, char const *argv[])
 {   
     Graph llGraph;
-    matToList(g4,llGraph);
+    matToList(g8,llGraph);
     //listToMat(g1,llGraph);
     // matGraphPrettyPrint(g1);
-    printf("%d\n",biPartite(llGraph));
+    llGraphPrettyPrinter(llGraph);
+    int comp[NV];
+    printf("%d\n",componentes(llGraph,comp));
+    for(int i = 0;i<NV;i++)printf("%d;",comp[i]);
+    printf("\n");
     return 0;
 }
