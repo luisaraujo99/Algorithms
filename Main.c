@@ -2,6 +2,7 @@
 #include "./Headers/GraphSearch.h"
 #include "./Headers/GraphExercises.h"
 #include "./Headers/Search&traversals.h"
+#include "./Headers/Buffers.h"
 #include <stdio.h>
 
 //Graph examples
@@ -78,19 +79,29 @@ int sequece1[6] = {0,1,2,3,4,5};
 //invalid topological sorting to Graph g4
 int sequece2[6] = {5,1,2,3,4,0};
 
+
+
 int main(int argc, char const *argv[])
 {   
-    Graph llGraph;
-    matToList(g1,llGraph);
-    //listToMat(g1,llGraph);
-    // matGraphPrettyPrint(g1);
+    LInt a = NULL;
+    LInt b = NULL;
+    append(&a,1);
+    append(&a,2);
+    append(&a,3);
+    append(&b,10);
+    append(&b,11);
+    append(&b,12);
+    a = concatL(a,b);
+    prettyPrintLList(a);
+    // Graph llGraph;Graph llGraph;
+    // matToList(g1,llGraph);g1);
     //multipleGraph(llGraph);
-    llGraphPrettyPrinter(llGraph);
+    //llGraphPrettyPrinter(llGraph);
     // int comp[NV];
     // printf("%d\n",componentes(llGraph,comp));
     // for(int i = 0;i<NV;i++)printf("%d;",comp[i]);
     // printf("\n");
-    printf("%d\n",adist(llGraph,0,4));
+    //printf("%d\n",adist(llGraph,0,4));
     //printf("%d\n",existsConnection(llGraph,0,3,2));
 
     return 0;
