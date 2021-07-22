@@ -136,3 +136,91 @@ int biPartite(Graph g){
     }
     return 1;
 }
+
+
+//This version only works if the numbers of layers is smaller or equal to 'k'
+int adist(Graph g,int o, int k){
+    int visited[NV];
+    int queue[NV];int qinit,qend,i;
+    int count = 0;
+    int layer = 0;
+    int layerbound = o; //last elem in a layer
+    EList it;
+
+    for(i=0;i<NV;i++){
+        visited[i]=-2;
+    }
+    qinit=qend=0;
+    queue[qend++]=o; //add the origin to the queue
+    visited[o]=1;
+    int npaths = 0;
+    while(qinit<qend && layer<k){
+        o = queue[qinit++];
+        count++;
+        for(it=g[o];it;it=it->next){
+            if(visited[it->dest]==-2){
+                queue[qend++]=it->dest;
+                visited[it->dest]=1;                
+                if(layer == k-1){
+                    npaths++;
+                }
+            }
+        }
+        if(layerbound==o){
+            layer++;
+            layerbound=queue[qend-1];   
+        }
+        
+    }
+    return npaths;
+}
+
+
+
+
+// exists connection
+
+int existsConnection(Graph g, int o,int d,int sec){
+    int visited[NV];
+    for(int i = 0;i<NV;i++){
+        visited[i]=0;
+    }
+    return DFRecSec(g,o,d,sec,visited);
+}
+
+int DFRecSec(Graph g, int o, int d, int sec, int vis[]){
+    int found = 0;
+    EList it;
+    vis[o]=1;
+    for(it =g[o];it && !found; it=it->next){
+        if(it->dest == d && it->cost >sec){
+            found= 1;
+        }
+        else if(!vis[it->dest] && it->cost > sec){
+            found = DFRecSec(g,it->dest,d,sec,vis);
+        }     
+    }
+    return found;
+}
+
+
+// and edge (v,c) exists iff 'c' is a multiple of 'v'
+void multipleGraph(Graph g){
+    int i;
+    for(i = 0;i<NV;i++){
+        g[i] = NULL;
+    };
+    EList it;
+    for(i=0;i<NV;i++){
+        for(int j = 0;j<NV;j++){
+            if(i==0 || (j % i) == 0){
+                it = malloc(sizeof(struct edge));
+                it->dest = j;
+                it->cost = 1;
+                it->next = g[i];
+                g[i] = it;
+            }
+        }
+    }
+}
+

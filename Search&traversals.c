@@ -106,22 +106,50 @@ int DFRec2(Graph g , int o ,int p[]){
     return count;
 }
 
+// Post order
+
+int traversalDF_PO(Graph g, int o,int p[]){
+    int i;
+    for(i = 0;i<NV;i++){
+        p[i]=-2;
+    }
+    p[o]=-1;
+    return DFRec2(g,o,p);
+}
+
+int DFRec_PO(Graph g , int o ,int p[]){
+    int count = 1;
+    EList it;
+    for(it = g[o];it;it=it->next){
+        if(p[it->dest]==-2){
+            count += DFRec2(g,it->dest,p);
+        }
+    }
+    p[it -> dest] = o;
+    return count;
+}
+
+
 //breadth-first
 
 int traversalBF(Graph g,int o){
     int visited[NV];
-    int queue[NV];int qinit,qend;
+    int queue[NV];int qinit,qend,i;
     int count = 0;
     EList it;
 
+    for(i=0;i<NV;i++){
+        visited[i]=-2;
+    }
     qinit=qend=0;
     queue[qend++]=o; //add the origin to the queue
     visited[o]=1;
     while(qinit<qend){
         o = queue[qinit++];
+        visited[o]=1;
         count++;
         for(it=g[o];it;it=it->next){
-            if(!visited[it->dest]){
+            if(visited[it->dest]==-2){
                 queue[qend++]=it->dest;
             }
         }
@@ -130,10 +158,13 @@ int traversalBF(Graph g,int o){
 }
 
 int traversalBFTree(Graph g,int o,int ant[]){
-    int queue[NV];int qinit,qend;
+    int queue[NV];int qinit,qend,i;
     int count = 0;
     EList it;
     
+    for(i=0;i<NV;i++){
+        ant[i]=-2;
+    }
     qinit=qend=0;
     queue[qend++]=o; //add the origin to the queue
     ant[o]=-1;

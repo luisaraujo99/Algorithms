@@ -26,6 +26,11 @@ int traversalDF2(Graph , int ,int []);
 
 int DFRec2(Graph , int ,int []);
 
+int traversalDF_PO(Graph , int ,int []);
+
+int DFRec_PO(Graph  , int  ,int []);
+
+
 //breadth-first
 
 int traversalBF(Graph ,int );

@@ -51,6 +51,25 @@ GraphMat g8
     { NE, NE, NE, NE, 1 , NE } ,
 } ;
 
+GraphMat g9
+= { { NE, 1 , 1 , NE, NE, 1  } ,
+    { NE, NE, NE, 1 , NE, NE } ,
+    { NE, 1 , NE, NE, NE, NE } ,
+    { NE, NE, NE, NE, 1 , NE } ,
+    { NE, NE, NE, NE, NE, 1  } ,
+    { NE, NE, NE, NE, 1 , NE } ,
+} ;
+
+
+GraphMat g20
+= { { NE, 3 , 3 , NE, NE, NE } ,
+    { NE, NE, NE, 3 , NE, NE } ,
+    { NE, NE, NE, NE, NE, NE } ,
+    { NE, NE, NE, NE, NE, NE } ,
+    { NE, NE, NE, NE, NE, NE } ,
+    { NE, NE, NE, NE, NE, NE } ,
+} ;
+
 
 
 //valid topological sorting to Graph g4
@@ -62,13 +81,17 @@ int sequece2[6] = {5,1,2,3,4,0};
 int main(int argc, char const *argv[])
 {   
     Graph llGraph;
-    matToList(g8,llGraph);
+    matToList(g1,llGraph);
     //listToMat(g1,llGraph);
     // matGraphPrettyPrint(g1);
+    //multipleGraph(llGraph);
     llGraphPrettyPrinter(llGraph);
-    int comp[NV];
-    printf("%d\n",componentes(llGraph,comp));
-    for(int i = 0;i<NV;i++)printf("%d;",comp[i]);
-    printf("\n");
+    // int comp[NV];
+    // printf("%d\n",componentes(llGraph,comp));
+    // for(int i = 0;i<NV;i++)printf("%d;",comp[i]);
+    // printf("\n");
+    printf("%d\n",adist(llGraph,0,4));
+    //printf("%d\n",existsConnection(llGraph,0,3,2));
+
     return 0;
 }
