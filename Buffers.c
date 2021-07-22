@@ -4,9 +4,10 @@
 
 void prettyPrintLList(LInt l){
     while(l){
-        printf("%d ;",l->val);
+        printf("%d -> ",l->val);
         l=l->prox;
     }
+    printf("NULL\n");
 }
 
 LInt cons(int x,LInt l){
@@ -85,3 +86,26 @@ LInt concatL(LInt a,LInt b){
     it-> prox = b;
     return a;
 }
+
+LInt reverseRec(LInt l){
+    LInt r,pt;
+    if(l==NULL || l->prox == NULL) r = l;
+    else{
+        r = pt = reverseRec(l->prox);
+        while(pt->prox!= NULL) pt = pt->prox;
+        pt->prox = l;
+        l->prox = NULL;
+    }
+    return r;
+}
+
+LInt reverseL ( LInt l ) {
+    LInt r , tmp ;
+    r=NULL;
+    while ( l !=NULL) {
+        tmp=l ; l= l -> prox ;
+        tmp->prox=r ; r=tmp ;
+    }
+    return r ;
+}
+

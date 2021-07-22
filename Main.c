@@ -84,14 +84,10 @@ int sequece2[6] = {5,1,2,3,4,0};
 int main(int argc, char const *argv[])
 {   
     LInt a = NULL;
-    LInt b = NULL;
     append(&a,1);
     append(&a,2);
     append(&a,3);
-    append(&b,10);
-    append(&b,11);
-    append(&b,12);
-    a = concatL(a,b);
+    a = reverseRec(a);
     prettyPrintLList(a);
     // Graph llGraph;Graph llGraph;
     // matToList(g1,llGraph);g1);

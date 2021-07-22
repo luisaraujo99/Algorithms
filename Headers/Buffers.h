@@ -13,7 +13,8 @@ void append(LInt * , int );
 void push(LInt * , int );
 void appendL(LInt *,LInt *);
 LInt concatL(LInt ,LInt );
-
+LInt reverseRec(LInt );
+LInt reverseL(LInt );
 
 
 #endif
